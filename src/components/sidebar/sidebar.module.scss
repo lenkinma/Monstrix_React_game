@@ -1,0 +1,21 @@
+@import 'src/styles/global';
+
+
+.sidebar{
+  grid-area: sidebar;
+  background-color: $primary-color-700;
+  height: 400px;
+  @extend %block;
+  display: flex;
+  flex-direction: column;
+  a{
+    text-decoration: none;
+    color: $secondary-color-100;
+    border-radius: 5px;
+    padding: 5px;
+    transition: background-color 0.2s ease;
+    &:hover{
+      background-color: $primary-color-800;
+    }
+  }
+}

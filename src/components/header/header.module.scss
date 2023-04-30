@@ -1,0 +1,33 @@
+@import 'src/styles/global';
+
+.header{
+  @extend %block;
+  grid-area: header;
+  background-color: $primary-color-700;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.user{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  svg{
+    width: 30px;
+    height: 30px;
+  }
+}
+.coins{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg{
+    width: 30px;
+    height: 30px;
+  }
+  .coins_count{
+    padding-right: 10px;
+  }
+}

@@ -1,0 +1,18 @@
+@import 'src/styles/global';
+
+.App {
+  width: 70%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-areas:
+  "header header"
+  "sidebar main";
+  grid-template-columns: 2fr 10fr;
+}
+
+.main{
+  grid-area: main;
+  background-color: $primary-color-600;
+  @extend %block;
+}
+

@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import './styles/App.scss';
+import Header from "./components/header/header";
+import Sidebar from "./components/sidebar/sidebar";
+import {Route, Routes} from "react-router-dom";
+import Fight from "./components/fight/fight";
+import MyMonstrix from "./components/myMonstrix/myMonstrix";
+import MainPage from "./components/mainPage/mainPage";
+import {useSelector} from "react-redux";
+import Auth from "./components/auth/auth";
 
 function App() {
+  const isAuth = useSelector(state => state.profile.isAuth);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {!isAuth
+        ?
+        <Auth />
+        :
+        <div className="App">
+          <Header />
+          <Sidebar />
+          <div className="main">
+            <Routes>
+              <Route path='/' element={<MainPage />}/>
+              <Route path='/fight' element={<Fight />}/>
+              <Route path='/my_monstrix' element={<MyMonstrix />}/>
+            </Routes>
+          </div>
+        </div>
+        }
     </div>
   );
 }

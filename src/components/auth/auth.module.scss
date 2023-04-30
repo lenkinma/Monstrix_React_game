@@ -1,0 +1,28 @@
+@import 'src/styles/global';
+
+.auth_container{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  min-width: 300px;
+  width: 40%;
+  margin: 10px auto;
+  background-color: $primary-color-700;
+  min-height: 500px;
+  @extend %block;
+}
+.welcome_title{
+  font-size: 30px;
+  text-align: center;
+}
+.input_text{
+  text-align: center;
+}
+.input_name{
+  @extend %input_block;
+  margin-top: 20px;
+  width: 100%;
+}
+.button_create_game{
+  @extend %button;
+}
