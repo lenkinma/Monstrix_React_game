@@ -1,0 +1,12 @@
+.preloader_container {
+  display: flex;
+  margin-top: 200px;
+  justify-content: center;
+  align-items: center;
+}
+
+.default_preloader {
+  width: 100px;
+}
+
+/*# sourceMappingURL=preloader.module.css.map */
