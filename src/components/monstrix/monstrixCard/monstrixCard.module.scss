@@ -1,0 +1,20 @@
+@import 'src/styles/global';
+
+.full_card{
+  margin-bottom: 10px;
+}
+.image_n_features{
+  display: flex;
+}
+.card_image{
+  width: 100px;
+  image-rendering: pixelated;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+.features{
+  margin-left: 10px;
+}
+.description{
+  color: $secondary-color-200;
+}

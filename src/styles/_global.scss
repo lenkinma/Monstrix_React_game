@@ -30,7 +30,9 @@ $primary-color-300: #dee2e6;
 $primary-color-200: #e9ecef;
 $primary-color-100: #f8f9fa;
 
-$box-shadow-black-100: 0 10px 20px 1px rgba(0, 0, 0, 0.3);
+$box-shadow-black-600: 0 10px 20px 1px rgba(0, 0, 0, 0.3);
+$box-shadow-black-100: 0 5px 10px 1px rgba(0, 0, 0, 0.2);
+
 $box-shadow-green-100: 0 0 100px 1px rgba(89, 214, 160, 0.3);
 
 
@@ -43,8 +45,18 @@ $box-shadow-green-100: 0 0 100px 1px rgba(89, 214, 160, 0.3);
   border-radius: 5px;
   min-width: 100px;
   color: $secondary-color-100;
+  transition: all 0.1s ease;
   &:hover{
-    opacity: 90%;
+    background-color: $secondary-color-600;
+    box-shadow: $box-shadow-black-100;
+    transform: translateY(1px);
+  }
+}
+%red_button{
+  @extend %button;
+  background-color: #d64541;
+  &:hover{
+    background-color: #ae3b31;
   }
 }
 
@@ -92,7 +104,7 @@ $box-shadow-green-100: 0 0 100px 1px rgba(89, 214, 160, 0.3);
 
 %blur_background{
   z-index: 1000;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(5px);
   width: 100%;
   height: 100%;
@@ -113,6 +125,6 @@ $box-shadow-green-100: 0 0 100px 1px rgba(89, 214, 160, 0.3);
     backdrop-filter: blur(5px);
   }
   100% {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.4);
   }
 }

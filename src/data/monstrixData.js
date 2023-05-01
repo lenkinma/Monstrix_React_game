@@ -8,6 +8,7 @@ import TotodileImage from '../assets/images/Totodile.png';
 
 export const allMonstrix = {
 	Grimer: {
+		id: 1,
 		name: 'Grimer',
 		image: GrimerImage,
 		description: 'no description',
@@ -16,6 +17,7 @@ export const allMonstrix = {
 		protect: 20,
 	},
 	Haunter: {
+		id: 2,
 		name: 'Haunter',
 		image: HaunterImage,
 		description: 'no description',
@@ -24,6 +26,7 @@ export const allMonstrix = {
 		protect: 20,
 	},
 	Jirachi: {
+		id: 3,
 		name: 'Jirachi',
 		image: JirachiImage,
 		description: 'no description',
@@ -32,6 +35,7 @@ export const allMonstrix = {
 		protect: 20,
 	},
 	Morpeko: {
+		id: 4,
 		name: 'Morpeko',
 		image: MorpekoImage,
 		description: 'no description',
@@ -40,6 +44,7 @@ export const allMonstrix = {
 		protect: 20,
 	},
 	Reshiram: {
+		id: 5,
 		name: 'Reshiram',
 		image: ReshiramImage,
 		description: 'no description',
@@ -48,6 +53,7 @@ export const allMonstrix = {
 		protect: 20,
 	},
 	Torracat: {
+		id: 6,
 		name: 'Torracat',
 		image: TorracatImage,
 		description: 'no description',
@@ -56,6 +62,7 @@ export const allMonstrix = {
 		protect: 20,
 	},
 	Totodile: {
+		id: 7,
 		name: 'Totodile',
 		image: TotodileImage,
 		description: 'no description',
