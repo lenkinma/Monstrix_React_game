@@ -9,6 +9,7 @@
   margin: 10px auto;
   background-color: $primary-color-700;
   min-height: 500px;
+  box-shadow: $box-shadow-black-100;
   @extend %block;
 }
 .welcome_title{

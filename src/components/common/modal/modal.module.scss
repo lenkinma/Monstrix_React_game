@@ -1,0 +1,38 @@
+@import 'src/styles/global';
+
+.background{
+  @extend %blur_background;
+}
+
+.container{
+  background-color: $primary-color-600;
+  width: 30%;
+  @extend %block;
+  display: flex;
+  flex-direction: column;
+  box-shadow: $box-shadow-green-100;
+}
+.title{
+  text-align: center;
+  font-size: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid $secondary-color-500;
+}
+.text_wrapper{
+  padding-top: 10px;
+  min-height: 100px;
+  width: 100%;
+}
+.buttons_block{
+  display: flex;
+  justify-content: center;
+}
+.button{
+  margin: 0 10px;
+  @extend %button;
+}
+.cancel_button{
+  margin: 0 10px;
+  @extend %button;
+  background-color: #d64541;
+}

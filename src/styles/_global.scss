@@ -30,12 +30,19 @@ $primary-color-300: #dee2e6;
 $primary-color-200: #e9ecef;
 $primary-color-100: #f8f9fa;
 
+$box-shadow-black-100: 0 10px 20px 1px rgba(0, 0, 0, 0.3);
+$box-shadow-green-100: 0 0 100px 1px rgba(89, 214, 160, 0.3);
+
+
+
 %button{
   cursor: pointer;
   background-color: $secondary-color-500;
   border: none;
   padding: 10px 40px;
   border-radius: 5px;
+  min-width: 100px;
+  color: $secondary-color-100;
   &:hover{
     opacity: 90%;
   }
@@ -58,4 +65,54 @@ $primary-color-100: #f8f9fa;
   border-radius: 10px;
   margin: 10px;
   padding: 10px;
+}
+
+%dark_background{
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: black_background_appear 0.5s ease forwards;
+}
+
+@keyframes black_background_appear {
+  0% {
+    background-color: rgba(0, 0, 0, 0.0);
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+}
+
+%blur_background{
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: blur_background_appear 0.2s ease forwards;
+}
+@keyframes blur_background_appear {
+  0% {
+    backdrop-filter: none;
+    background-color: rgba(0, 0, 0, 0.0);
+  }
+  25% {
+    backdrop-filter: blur(5px);
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
 }

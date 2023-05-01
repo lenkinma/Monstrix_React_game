@@ -1,13 +1,10 @@
+@import 'src/styles/global';
 
-
-.preloader_container{
-  display: flex;
-  margin-top: 200px;
-  justify-content: center;
-  align-items: center;
+.preloader_background{
+  //@extend %dark_background;
+  @extend %blur_background;
 }
 
 .default_preloader{
   width: 100px;
-  //margin: 0 auto;
 }

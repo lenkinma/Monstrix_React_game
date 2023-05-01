@@ -4,7 +4,7 @@ import styles from './preloader.module.scss';
 
 function Preloader(props) {
 	return (
-		<div className={styles.preloader_container}>
+		<div className={styles.preloader_background}>
 			<img className={styles.default_preloader} src={preloader} alt='preloader'/>
 		</div>
 	);

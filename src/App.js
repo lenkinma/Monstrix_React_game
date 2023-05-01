@@ -7,30 +7,28 @@ import MyMonstrix from "./components/myMonstrix/myMonstrix";
 import MainPage from "./components/mainPage/mainPage";
 import {useSelector} from "react-redux";
 import Auth from "./components/auth/auth";
+import Modal from "./components/common/modal/modal";
 
 function App() {
-  const isAuth = useSelector(state => state.profile.isAuth);
+	const isAuth = useSelector(state => state.profile.isAuth);
 
-  return (
-    <div>
-      {!isAuth
-        ?
-        <Auth />
-        :
-        <div className="App">
-          <Header />
-          <Sidebar />
-          <div className="main">
-            <Routes>
-              <Route path='/' element={<MainPage />}/>
-              <Route path='/fight' element={<Fight />}/>
-              <Route path='/my_monstrix' element={<MyMonstrix />}/>
-            </Routes>
-          </div>
-        </div>
-        }
-    </div>
-  );
+
+	if (!isAuth) return <Auth/>
+
+	return (
+		<div className="App">
+			<Header/>
+			<Sidebar/>
+			<div className="main">
+				<Routes>
+					<Route path='/' element={<MainPage/>}/>
+					<Route path='/fight' element={<Fight/>}/>
+					<Route path='/my_monstrix' element={<MyMonstrix/>}/>
+				</Routes>
+			</div>
+      {/*<Modal type={'default'} title={'You are Welcome!'} text={'hello world!'}/>*/}
+		</div>
+	);
 }
 
 export default App;
