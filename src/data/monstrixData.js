@@ -15,6 +15,8 @@ export const allMonstrix = {
 		hp: 500,
 		damage: 15,
 		protect: 20,
+		lvl: 1,
+		xp: 0,
 	},
 	Haunter: {
 		id: 2,
@@ -24,6 +26,8 @@ export const allMonstrix = {
 		hp: 150,
 		damage: 15,
 		protect: 20,
+		lvl: 1,
+		xp: 0,
 	},
 	Jirachi: {
 		id: 3,
@@ -33,6 +37,8 @@ export const allMonstrix = {
 		hp: 150,
 		damage: 15,
 		protect: 20,
+		lvl: 1,
+		xp: 0,
 	},
 	Morpeko: {
 		id: 4,
@@ -42,6 +48,8 @@ export const allMonstrix = {
 		hp: 150,
 		damage: 15,
 		protect: 20,
+		lvl: 1,
+		xp: 0,
 	},
 	Reshiram: {
 		id: 5,
@@ -51,6 +59,8 @@ export const allMonstrix = {
 		hp: 150,
 		damage: 15,
 		protect: 20,
+		lvl: 1,
+		xp: 0,
 	},
 	Torracat: {
 		id: 6,
@@ -60,6 +70,8 @@ export const allMonstrix = {
 		hp: 150,
 		damage: 15,
 		protect: 20,
+		lvl: 1,
+		xp: 0,
 	},
 	Totodile: {
 		id: 7,
@@ -69,5 +81,7 @@ export const allMonstrix = {
 		hp: 150,
 		damage: 15,
 		protect: 20,
+		lvl: 1,
+		xp: 0,
 	},
 }

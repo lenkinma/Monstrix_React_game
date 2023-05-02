@@ -8,9 +8,9 @@ function fetchTimeout(timeout = 500, func) {
 }
 export const fetchingAsync = createAsyncThunk(
 	'profile/fetching',
-	async ({timeout, func}, {dispatch}) => {
+	async ({timeout, func = null}, {dispatch}) => {
 		const response = await fetchTimeout(timeout, func);
-		dispatch(func());
+		if (func) dispatch(func());
 		return response.data;
 	}
 );

@@ -1,14 +1,13 @@
 
-//colors
-//$primary-color-900: #081c15;
-//$primary-color-800: #1b4332;
-//$primary-color-700: #2d6a4f;
-//$primary-color-600: #40916c;
-//$primary-color-500: #52b788;
-//$primary-color-400: #74c69d;
-//$primary-color-300: #95d5b2;
-//$primary-color-200: #b7e4c7;
-//$primary-color-100: #d8f3dc;
+$primary-color-900: #212529;
+$primary-color-800: #343a40;
+$primary-color-700: #495057;
+$primary-color-600: #6c757d;
+$primary-color-500: #adb5bd;
+$primary-color-400: #ced4da;
+$primary-color-300: #dee2e6;
+$primary-color-200: #e9ecef;
+$primary-color-100: #f8f9fa;
 
 $secondary-color-900: #081c15;
 $secondary-color-800: #1b4332;
@@ -20,15 +19,8 @@ $secondary-color-300: #95d5b2;
 $secondary-color-200: #b7e4c7;
 $secondary-color-100: #d8f3dc;
 
-$primary-color-900: #212529;
-$primary-color-800: #343a40;
-$primary-color-700: #495057;
-$primary-color-600: #6c757d;
-$primary-color-500: #adb5bd;
-$primary-color-400: #ced4da;
-$primary-color-300: #dee2e6;
-$primary-color-200: #e9ecef;
-$primary-color-100: #f8f9fa;
+$third-color-600: #ae3b31;
+$third-color-500: #d64541;
 
 $box-shadow-black-600: 0 10px 20px 1px rgba(0, 0, 0, 0.3);
 $box-shadow-black-100: 0 5px 10px 1px rgba(0, 0, 0, 0.2);
@@ -54,9 +46,9 @@ $box-shadow-green-100: 0 0 100px 1px rgba(89, 214, 160, 0.3);
 }
 %red_button{
   @extend %button;
-  background-color: #d64541;
+  background-color: $third-color-500;
   &:hover{
-    background-color: #ae3b31;
+    background-color: $third-color-600;
   }
 }
 
@@ -126,5 +118,29 @@ $box-shadow-green-100: 0 0 100px 1px rgba(89, 214, 160, 0.3);
   }
   100% {
     background-color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+
+%monstrix_image{
+  width: 100px;
+  image-rendering: pixelated;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+%monstrix_card{
+  margin: 10px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: $secondary-color-500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.2s ease;
+  &:hover{
+    background-color: $secondary-color-600;
+    transform: translateY(-10px);
+    cursor: pointer;
   }
 }

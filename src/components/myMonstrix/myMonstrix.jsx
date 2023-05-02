@@ -1,17 +1,22 @@
-import React, {useState} from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import styles from './myMonstrix.module.scss';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {makeModal} from "../common/modal/modal";
 import MonstrixCard from "../monstrix/monstrixCard/monstrixCard";
+import {fetchingAsync} from "../../store/profileSlice";
 
 
 function MyMonstrix(props) {
 	const myMonstrix = useSelector(state => state.myMonstrix.myMonstrix);
+	// const dispatch = useDispatch();
 	const [cardIsOpen, setCardIsOpen] = useState(false);
 	const [idOpenCard, setIdOpenCard] = useState(null);
 
-
 	const CardModal = makeModal(MonstrixCard, {green: false, red: false, close: true}, 'Monstrix Card', setCardIsOpen);
+
+	// useEffect(() => {
+	// 	dispatch(fetchingAsync({timeout: 500}));
+	// }, []);
 
 	return (
 		<div>
@@ -33,4 +38,4 @@ function MyMonstrix(props) {
 	);
 }
 
-export default MyMonstrix;
+export default memo(MyMonstrix);

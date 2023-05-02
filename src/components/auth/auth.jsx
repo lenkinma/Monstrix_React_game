@@ -3,7 +3,6 @@ import styles from './auth.module.scss';
 import {useDispatch, useSelector} from "react-redux";
 import {createGame, fetchingAsync} from "../../store/profileSlice";
 import Preloader from "../common/preloader";
-import Modal from "../common/modal/modal";
 
 function Auth(props) {
 	const [name, setName] = useState('');
@@ -12,7 +11,6 @@ function Auth(props) {
 
 	const onSubmit = () => {
 		if (name.trim().length) {
-			// dispatch(createGame({name}));
 			dispatch(fetchingAsync({timeout: 500, func: () => createGame({name})}));
 		}
 	}

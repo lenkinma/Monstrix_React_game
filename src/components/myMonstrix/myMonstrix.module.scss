@@ -13,24 +13,9 @@
   margin: 10px 0;
 }
 .monstrix_card{
-  margin: 10px;
-  padding: 5px;
-  border-radius: 10px;
-  background-color: $secondary-color-500;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: all 0.2s ease;
-  &:hover{
-    background-color: $secondary-color-600;
-    transform: translateY(-10px);
-    cursor: pointer;
-  }
+  @extend %monstrix_card;
 }
 
 .card_image{
-  width: 100px;
-  image-rendering: pixelated;
-  border-radius: 10px;
-  margin-bottom: 5px;
+  @extend %monstrix_image;
 }
