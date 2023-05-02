@@ -24,6 +24,7 @@ $third-color-500: #d64541;
 
 $box-shadow-black-600: 0 10px 20px 1px rgba(0, 0, 0, 0.3);
 $box-shadow-black-100: 0 5px 10px 1px rgba(0, 0, 0, 0.2);
+$box-shadow-black-anti-100: 0 5px 10px 1px rgba(0, 0, 0, 0.2) inset;
 
 $box-shadow-green-100: 0 0 100px 1px rgba(89, 214, 160, 0.3);
 
@@ -50,6 +51,16 @@ $box-shadow-green-100: 0 0 100px 1px rgba(89, 214, 160, 0.3);
   &:hover{
     background-color: $third-color-600;
   }
+}
+%button_is_disabled{
+  color: $secondary-color-900;
+  background-color: $primary-color-500;
+  border: none;
+  padding: 10px 40px;
+  border-radius: 5px;
+  min-width: 100px;
+  box-shadow: $box-shadow-black-anti-100;
+  transform: translateY(2px);
 }
 
 %input_block{

@@ -27,6 +27,10 @@
           width: fit-content;
           @extend %monstrix_card;
         }
+        .my_monster_is_attack{
+          //background-color: orange;
+          animation: left_to_right_attack 1s linear forwards;
+        }
         .enemy_card{
           background-color: $third-color-500;
           &:hover{
@@ -40,6 +44,14 @@
     }
     .button_block{
       display: flex;
+      .button_attack{
+        @extend %button;
+        width: 100%;
+      }
+      .disabled_button{
+        @extend %button_is_disabled;
+        width: 100%;
+      }
     }
   }
 
@@ -71,5 +83,30 @@
         }
       }
     }
+  }
+}
+
+
+@keyframes left_to_right_attack {
+  0% {
+    transform: translateX(0%);
+  }
+  30% {
+    transform: translateX(20%);
+  }
+  35% {
+    transform: translateX(100%);
+    //background-color: $secondary-color-500;
+  }
+  40% {
+    transform: translateX(100%);
+    //background-color: #ae8c18;
+  }
+  45% {
+    transform: translateX(100%);
+    //background-color: $secondary-color-500;
+  }
+  100% {
+    transform: translateX(0%);
   }
 }
