@@ -5,6 +5,15 @@ import MorpekoImage from '../assets/images/Morpeko.png';
 import ReshiramImage from '../assets/images/Reshiram.png';
 import TorracatImage from '../assets/images/Torracat.png';
 import TotodileImage from '../assets/images/Totodile.png';
+import BronzorImage from '../assets/images/Bronzor.png';
+import CroagunkImage from '../assets/images/Croagunk.png';
+import FlaaffyImage from '../assets/images/Flaaffy.png';
+import GastlyImage from '../assets/images/Gastly.png';
+import GeodudeImage from '../assets/images/Geodude.png';
+import LickitungImage from '../assets/images/Lickitung.png';
+import MespritImage from '../assets/images/Mesprit.png';
+import NoctowlImage from '../assets/images/Noctowl.png';
+import VanilliteImage from '../assets/images/Vanillite.png';
 
 export const allMonstrix = [
 	{
@@ -77,6 +86,105 @@ export const allMonstrix = [
 		id: 7,
 		name: 'Totodile',
 		image: TotodileImage,
+		description: 'no description',
+		hp: 150,
+		damage: 15,
+		protect: 20,
+		lvl: 1,
+		xp: 0,
+	},
+	{
+		id: 8,
+		name: 'Bronzor',
+		image: BronzorImage,
+		description: 'no description',
+		hp: 150,
+		damage: 15,
+		protect: 20,
+		lvl: 1,
+		xp: 0,
+	},
+	{
+		id: 9,
+		name: 'Croagunk',
+		image: CroagunkImage,
+		description: 'no description',
+		hp: 150,
+		damage: 15,
+		protect: 20,
+		lvl: 1,
+		xp: 0,
+	},
+	{
+		id: 10,
+		name: 'Flaaffy',
+		image: FlaaffyImage,
+		description: 'no description',
+		hp: 150,
+		damage: 15,
+		protect: 20,
+		lvl: 1,
+		xp: 0,
+	},
+	{
+		id: 11,
+		name: 'Gastly',
+		image: GastlyImage,
+		description: 'no description',
+		hp: 150,
+		damage: 15,
+		protect: 20,
+		lvl: 1,
+		xp: 0,
+	},
+	{
+		id: 12,
+		name: 'Geodude',
+		image: GeodudeImage,
+		description: 'no description',
+		hp: 150,
+		damage: 15,
+		protect: 20,
+		lvl: 1,
+		xp: 0,
+	},
+	{
+		id: 13,
+		name: 'Lickitung',
+		image: LickitungImage,
+		description: 'no description',
+		hp: 150,
+		damage: 15,
+		protect: 20,
+		lvl: 1,
+		xp: 0,
+	},
+	{
+		id: 14,
+		name: 'Mesprit',
+		image: MespritImage,
+		description: 'no description',
+		hp: 150,
+		damage: 15,
+		protect: 20,
+		lvl: 1,
+		xp: 0,
+	},
+	{
+		id: 15,
+		name: 'Noctowl',
+		image: NoctowlImage,
+		description: 'no description',
+		hp: 150,
+		damage: 15,
+		protect: 20,
+		lvl: 1,
+		xp: 0,
+	},
+	{
+		id: 16,
+		name: 'Vanillite',
+		image: VanilliteImage,
 		description: 'no description',
 		hp: 150,
 		damage: 15,

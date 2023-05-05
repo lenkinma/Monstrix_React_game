@@ -8,6 +8,7 @@ import {GiBroadsword, GiHealthNormal} from "react-icons/gi";
 import {TbDog} from "react-icons/tb";
 import {BiRun} from "react-icons/bi";
 import {setCoins, setErrorNotification} from "../../store/profileSlice";
+import {SetNotification, setNotification} from "../common/notification/makeNotification";
 
 function Arena(props) {
 	const dispatch = useDispatch();
@@ -94,13 +95,13 @@ function Arena(props) {
 		'To heal your monster?',
 		setHealModalIsOpen, () => {
 			if (coins - 120 < 0) {
-				dispatch(setErrorNotification({status: true, text: 'Not enough coins!'}));
-				setTimeout(() => dispatch(setErrorNotification({status: false, text: ''})), 3000);
+				setNotification(dispatch, 'error', 'not enough coins');
 			}
 			else{
 				dispatch(setCoins({coins: coins - 120}));
 				setMyMonster({...myMonster, hp: myMonster.hp + 50});
 				setHealModalIsOpen(false);
+				setNotification(dispatch, 'success', 'health replenished');
 			}
 		});
 

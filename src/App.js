@@ -14,6 +14,7 @@ import Notification from "./components/common/notification/makeNotification";
 function App() {
 	const isAuth = useSelector(state => state.profile.isAuth);
 	const errorNotification = useSelector(state => state.profile.errorNotification);
+	const successNotification = useSelector(state => state.profile.successNotification);
 	// const isFetching = useSelector(state => state.profile.isFetching);
 
 	if (!isAuth) return <Auth/>
@@ -21,6 +22,7 @@ function App() {
 	return (
 		<div className="App">
 			{errorNotification.status && <Notification variant={'error'} text={errorNotification.text} />}
+			{successNotification.status && <Notification variant={'success'} text={successNotification.text} />}
 			{/*{isFetching && <Preloader/>}*/}
 			<Header/>
 			<Sidebar/>

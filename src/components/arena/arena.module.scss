@@ -54,22 +54,18 @@
       height: 45%;
       .button_attack{
         @extend %button;
-        width: 100%;
       }
       .button_heal{
         @extend %button;
-        //width: 100%;
       }
       .button_tame{
         @extend %button;
-        //width: 100%;
       }
       .button_leave{
         @extend %red_button;
       }
       .disabled_button{
         @extend %button_is_disabled;
-        width: 100%;
       }
       .stuff_buttons_block{
         display: flex;
