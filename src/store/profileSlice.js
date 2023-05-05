@@ -20,14 +20,33 @@ const profileSlice = createSlice({
 	initialState: {
 		isAuth: false,
 		name: null,
-		coins: 100,
+		coins: 200,
 		isFetching: false,
+		errorNotification: {
+			status: false,
+			text: '',
+		},
+		successNotification: {
+			status: false,
+			text: '',
+		}
 	},
 	reducers: {
 		createGame(state, action){
 			state.name = action.payload.name;
 			state.isAuth = true;
-		}
+		},
+		setCoins(state, action){
+			state.coins = action.payload.coins;
+		},
+		setErrorNotification(state, action){
+			state.errorNotification.status = action.payload.status;
+			state.errorNotification.text = action.payload.text;
+		},
+		setSuccessNotification(state, action){
+			state.successNotification.status = action.payload.status;
+			state.successNotification.text = action.payload.text;
+		},
 	},
 	extraReducers: {
 		[fetchingAsync.pending]: (state, action) => {
@@ -39,6 +58,6 @@ const profileSlice = createSlice({
 	}
 });
 
-export const {createGame} = profileSlice.actions;
+export const {createGame, setCoins, setErrorNotification, setSuccessNotification} = profileSlice.actions;
 
 export default profileSlice.reducer;

@@ -107,7 +107,7 @@ $box-shadow-green-100: 0 0 100px 1px rgba(89, 214, 160, 0.3);
 
 %blur_background{
   z-index: 1000;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(5px);
   width: 100%;
   height: 100%;
@@ -117,7 +117,7 @@ $box-shadow-green-100: 0 0 100px 1px rgba(89, 214, 160, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: blur_background_appear 0.2s ease forwards;
+  //animation: blur_background_appear 0.2s ease forwards;
 }
 @keyframes blur_background_appear {
   0% {
@@ -153,5 +153,21 @@ $box-shadow-green-100: 0 0 100px 1px rgba(89, 214, 160, 0.3);
     background-color: $secondary-color-600;
     transform: translateY(-10px);
     cursor: pointer;
+  }
+}
+
+%spring_animation{
+  animation: spring_animation 2s ease infinite;
+}
+
+@keyframes spring_animation {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0px);
   }
 }

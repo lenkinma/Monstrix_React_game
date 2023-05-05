@@ -4,12 +4,13 @@ import {BsHeartHalf} from "react-icons/bs";
 import {GiCheckedShield} from "react-icons/gi";
 import React from "react";
 import {useSelector} from "react-redux";
+import {allMonstrix} from "../../../data/monstrixData";
 
 
 const MonstrixCard = (props) => {
-	const myMonstrix = useSelector(state => state.myMonstrix.myMonstrix);
 
-	const card = myMonstrix.find(elem => elem.id === props.id);
+	const card = allMonstrix.find(elem => elem.id === props.id);
+
 	return (
 		<div className={styles.full_card}>
 			<div className={styles.image_n_features}>

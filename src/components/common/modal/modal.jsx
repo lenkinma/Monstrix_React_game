@@ -6,7 +6,7 @@ export const makeModal = (Component, mode = {
 	green: false,
 	red: false,
 	close: true
-}, title = 'Default title', setModalIsOpen, onGreenButton, onRedButton) => {
+}, title = 'Default title', setModalIsOpen, onGreenButton, onRedButton = () => setModalIsOpen(false)) => {
 	const ModalBase = (props) => {
 
 		const closeModal = () => {
@@ -30,7 +30,7 @@ export const makeModal = (Component, mode = {
 							<button className={styles.button} onClick={() => onGreenButton(true)}>Okay</button>
 						}
 						{mode.red &&
-							<button className={styles.cancel_button} nClick={() => onRedButton(true)}>Cancel</button>
+							<button className={styles.cancel_button} onClick={() => onRedButton(true)}>Cancel</button>
 						}
 					</div>
 				</div>

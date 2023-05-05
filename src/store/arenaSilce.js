@@ -6,7 +6,7 @@ const arenaSlice = createSlice({
 	name: 'arena',
 	initialState: {
 		stage: 1,
-		enemy: allMonstrix.Reshiram,
+		enemy: allMonstrix.find(elem => elem.name === 'Reshiram'),
 		isFight: true,
 	},
 	reducers: {

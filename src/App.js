@@ -9,15 +9,18 @@ import {useSelector} from "react-redux";
 import Auth from "./components/auth/auth";
 import React, {useEffect} from "react";
 import Preloader from "./components/common/preloader";
+import Notification from "./components/common/notification/makeNotification";
 
 function App() {
 	const isAuth = useSelector(state => state.profile.isAuth);
+	const errorNotification = useSelector(state => state.profile.errorNotification);
 	// const isFetching = useSelector(state => state.profile.isFetching);
 
 	if (!isAuth) return <Auth/>
 
 	return (
 		<div className="App">
+			{errorNotification.status && <Notification variant={'error'} text={errorNotification.text} />}
 			{/*{isFetching && <Preloader/>}*/}
 			<Header/>
 			<Sidebar/>

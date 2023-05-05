@@ -6,8 +6,8 @@ import ReshiramImage from '../assets/images/Reshiram.png';
 import TorracatImage from '../assets/images/Torracat.png';
 import TotodileImage from '../assets/images/Totodile.png';
 
-export const allMonstrix = {
-	Grimer: {
+export const allMonstrix = [
+	{
 		id: 1,
 		name: 'Grimer',
 		image: GrimerImage,
@@ -18,7 +18,7 @@ export const allMonstrix = {
 		lvl: 1,
 		xp: 0,
 	},
-	Haunter: {
+	{
 		id: 2,
 		name: 'Haunter',
 		image: HaunterImage,
@@ -29,7 +29,7 @@ export const allMonstrix = {
 		lvl: 1,
 		xp: 0,
 	},
-	Jirachi: {
+	{
 		id: 3,
 		name: 'Jirachi',
 		image: JirachiImage,
@@ -40,7 +40,7 @@ export const allMonstrix = {
 		lvl: 1,
 		xp: 0,
 	},
-	Morpeko: {
+	{
 		id: 4,
 		name: 'Morpeko',
 		image: MorpekoImage,
@@ -51,7 +51,7 @@ export const allMonstrix = {
 		lvl: 1,
 		xp: 0,
 	},
-	Reshiram: {
+	{
 		id: 5,
 		name: 'Reshiram',
 		image: ReshiramImage,
@@ -62,7 +62,7 @@ export const allMonstrix = {
 		lvl: 1,
 		xp: 0,
 	},
-	Torracat: {
+	{
 		id: 6,
 		name: 'Torracat',
 		image: TorracatImage,
@@ -73,7 +73,7 @@ export const allMonstrix = {
 		lvl: 1,
 		xp: 0,
 	},
-	Totodile: {
+	{
 		id: 7,
 		name: 'Totodile',
 		image: TotodileImage,
@@ -84,4 +84,4 @@ export const allMonstrix = {
 		lvl: 1,
 		xp: 0,
 	},
-}
+]

@@ -26,6 +26,7 @@
         .my_card, .enemy_card{
           width: fit-content;
           @extend %monstrix_card;
+          @extend %spring_animation;
         }
         .my_monster_is_attack{
           //background-color: orange;
@@ -37,6 +38,9 @@
             background-color: $third-color-600;
           }
         }
+        .enemy_is_attack{
+          animation: right_to_left_attack 1s linear forwards;
+        }
       }
       .monster_image{
         @extend %monstrix_image;
@@ -44,13 +48,32 @@
     }
     .button_block{
       display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      //background-color: #081c15;
+      height: 45%;
       .button_attack{
         @extend %button;
         width: 100%;
       }
+      .button_heal{
+        @extend %button;
+        //width: 100%;
+      }
+      .button_tame{
+        @extend %button;
+        //width: 100%;
+      }
+      .button_leave{
+        @extend %red_button;
+      }
       .disabled_button{
         @extend %button_is_disabled;
         width: 100%;
+      }
+      .stuff_buttons_block{
+        display: flex;
+        justify-content: space-between;
       }
     }
   }
@@ -104,6 +127,30 @@
   }
   45% {
     transform: translateX(100%);
+    //background-color: $secondary-color-500;
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes right_to_left_attack {
+  0% {
+    transform: translateX(0%);
+  }
+  30% {
+    transform: translateX(-20%);
+  }
+  35% {
+    transform: translateX(-100%);
+    //background-color: $secondary-color-500;
+  }
+  40% {
+    transform: translateX(-100%);
+    //background-color: #ae8c18;
+  }
+  45% {
+    transform: translateX(-100%);
     //background-color: $secondary-color-500;
   }
   100% {

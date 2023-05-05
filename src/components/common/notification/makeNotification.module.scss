@@ -1,0 +1,37 @@
+@import 'src/styles/global';
+
+.notification_wrapper{
+  position: fixed;
+  left: 30px;
+  bottom: -50px;
+  z-index: 10001;
+  min-width: 200px;
+  border-radius: 5px;
+  padding: 15px;
+  animation: up 3s ease forwards;
+}
+
+.error{
+  background-color: $third-color-500;
+}
+
+.success{
+  background-color: $secondary-color-400;
+}
+
+@keyframes up{
+  0%{
+    transform: translateY(0px);
+  }
+  5%{
+    transform: translateY(-70px);
+    opacity: 100%;
+  }
+  70%{
+    transform: translateY(-70px);
+    opacity: 100%;
+  }
+  100%{
+    opacity: 0;
+  }
+}
