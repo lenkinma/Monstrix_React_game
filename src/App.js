@@ -10,6 +10,7 @@ import Auth from "./components/auth/auth";
 import React, {useEffect} from "react";
 import Preloader from "./components/common/preloader";
 import Notification from "./components/common/notification/makeNotification";
+import ArenaBlock from "./components/arena/arenaBlock";
 
 function App() {
 	const isAuth = useSelector(state => state.profile.isAuth);
@@ -30,7 +31,7 @@ function App() {
 				<Routes>
 					<Route path='/' element={<MainPage/>}/>
 					{/*<Route path='/auth' element={<Auth/>}/>*/}
-					<Route path='/arena' element={<Arena/>}/>
+					<Route path='/arena' element={<ArenaBlock/>}/>
 					<Route path='/my_monstrix' element={<MyMonstrix/>}/>
 				</Routes>
 			</div>

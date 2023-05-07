@@ -7,24 +7,21 @@ import MonstrixCard from "../monstrix/monstrixCard/monstrixCard";
 import {GiBroadsword, GiHealthNormal} from "react-icons/gi";
 import {TbDog} from "react-icons/tb";
 import {BiRun} from "react-icons/bi";
-import {setCoins, setErrorNotification} from "../../store/profileSlice";
+import {setCoins} from "../../store/profileSlice";
 import {setNotification} from "../common/notification/makeNotification";
-import ArenaMenu from "./arenaMenu";
+import {changeEnemy, changeFightLog, changeMyMonster, endFight, setFightEnd} from "../../store/arenaSilce";
 
 function Arena(props) {
 	const dispatch = useDispatch();
 	const coins = useSelector(state => state.profile.coins);
-	const isFight = useSelector(state => state.arena.isFight);
 	const [healModalIsOpen, setHealModalIsOpen] = useState(false);
 	const [cardIsOpen, setCardIsOpen] = useState(false);
+	const [endFightModalIsOpen, setEndFightModalIsOpen] = useState(false);
 	const [idOpenCard, setIdOpenCard] = useState(null);
-	const [myMonster, setMyMonster] = useState(useSelector(state => ({...state.myMonstrix.myMonstrix[0]})));
-	const [enemy, setEnemy] = useState(useSelector(state => ({...state.arena.enemy})));
-	const [fightLog, setFightLog] = useState([
-		// {id: 1, name: 'enemy1', event: 'bla bla bla'},
-		// {id: 2, name: 'you2', event: 'attack 15 damage'},
-		// {id: 3, name: 'enemy3', event: 'block'},
-	]);
+	const myMonster = useSelector(state => state.arena.myMonster);
+	const enemy = useSelector(state => state.arena.enemy);
+	const fightLog = useSelector(state => state.arena.fightLog);
+
 	const [attackButtonIsDisables, setAttackButtonIsDisables] = useState(false);
 	const [myMonsterIsAttack, setMyMonsterIsAttack] = useState(false);
 	const [EnemyIsAttack, setEnemyIsAttack] = useState(false);
@@ -51,34 +48,30 @@ function Arena(props) {
 	}
 
 	const myMonsterAttacks = () => {
+		let tempLog = {};
 		setAttackButtonIsDisables(true);
 		setMyMonsterIsAttack(true);
 		setTimeout(() => {
 			setMyMonsterIsAttack(false);
 			let damage = damageWithRandom(myMonster.damage);
-			// console.log(damage);
-			setEnemy({...enemy, hp: enemy.hp - damage});
-			setFightLog([...fightLog, {id: fightLog.length + 1, name: myMonster.name, event: `did ${damage} damage`}]);
+			dispatch(changeEnemy({enemy: {...enemy, hp: (enemy.hp - damage < 0 ? 0 : enemy.hp - damage)}}))
+			tempLog = {id: fightLog.length + 1, name: myMonster.name, event: `did ${damage} damage`};
+			dispatch(changeFightLog({fightLog: [...fightLog, tempLog]}));
 			setEnemyIsAttack(true);
-			// enemyMonsterAttacks();
+			enemyMonsterAttacks(tempLog);
 		}, 1000);
 	}
 
-	const enemyMonsterAttacks = () => {
+	const enemyMonsterAttacks = (tempLog) => {
 		setTimeout(() => {
 			setAttackButtonIsDisables(false);
 			setEnemyIsAttack(false);
 			let damage = damageWithRandom(enemy.damage);
-			// console.log(damage);
-			setMyMonster({...myMonster, hp: myMonster.hp - damage});
-			setFightLog([...fightLog, {id: fightLog.length + 1, name: enemy.name, event: `did ${damage} damage`}
-			]);
+			dispatch(changeMyMonster({myMonster: {...myMonster, hp: (myMonster.hp - damage < 0 ? 0 : myMonster.hp - damage)}}));
+			dispatch(changeFightLog({fightLog: [...fightLog, tempLog, {id: fightLog.length + 2, name: enemy.name, event: `did ${damage} damage`}]}));
+			setEndFightModalIsOpen(true);
 		}, 1000);
 	}
-
-	useEffect(() => {
-		if (EnemyIsAttack === true) enemyMonsterAttacks();
-	}, [myMonsterIsAttack]);
 
 
 	const CardModal = makeModal(MonstrixCard, {green: false, red: false, close: true}, 'Monstrix Card', setCardIsOpen);
@@ -101,17 +94,30 @@ function Arena(props) {
 			}
 			else{
 				dispatch(setCoins({coins: coins - 120}));
-				setMyMonster({...myMonster, hp: myMonster.hp + 50});
+				dispatch(changeMyMonster({enemy: {...myMonster, hp: myMonster.hp + 50}}));
 				setHealModalIsOpen(false);
 				setNotification(dispatch, 'success', 'health replenished');
 			}
 		});
 
 
-	if (isFight === false) return <ArenaMenu/>
+	const EndOfFight = () => {
+		return (
+			<div>END!</div>
+		);
+	}
+	const EndOfFightModal = makeModal(EndOfFight,
+		{green: true, red: false, close: false},
+		'End of fight',
+		setEndFightModalIsOpen, () => {
+			dispatch(endFight({}));
+			dispatch(setCoins({coins: coins + 100}));
+			setEndFightModalIsOpen(false);
+		});
 
 	return (
 		<div>
+			{endFightModalIsOpen && <EndOfFightModal/> }
 			{cardIsOpen && <CardModal id={idOpenCard} /> }
 			{healModalIsOpen && <HealModal/> }
 

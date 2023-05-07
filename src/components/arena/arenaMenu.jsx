@@ -5,6 +5,7 @@ import {makeModal} from "../common/modal/modal";
 import MonstrixCard from "../monstrix/monstrixCard/monstrixCard";
 import cn from "classnames";
 import {setNotification} from "../common/notification/makeNotification";
+import {startFight} from "../../store/arenaSilce";
 
 function ArenaMenu(props) {
 	const myMonstrix = useSelector(state => state.myMonstrix.myMonstrix);
@@ -22,7 +23,8 @@ function ArenaMenu(props) {
 	const generateAnOpponent = () => {
 		if (idselectedCard === 0) setNotification(dispatch, 'error', 'Please, choose your monster');
 		else{
-
+			const myMonster = myMonstrix.find(elem => elem.id === idselectedCard);
+			dispatch(startFight({myMonster}))
 		}
 	}
 
