@@ -31,6 +31,7 @@ const arenaSlice = createSlice({
 		},
 		endFight(state, action){
 			state.isFight = false;
+			state.fightLog = [];
 			state.enemy = null;
 			state.myMonster = null;
 			state.stageLevel += 1;

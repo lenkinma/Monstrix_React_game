@@ -12,7 +12,9 @@ function MyMonstrix(props) {
 	const [cardIsOpen, setCardIsOpen] = useState(false);
 	const [idOpenCard, setIdOpenCard] = useState(null);
 
-	const CardModal = makeModal(MonstrixCard, {green: false, red: false, close: true}, 'Monstrix Card', setCardIsOpen);
+	const CardModal = makeModal(MonstrixCard,
+		{green: {status: false,}, red: {status: false,}, close: true},
+		'Monstrix Card', setCardIsOpen);
 
 	// useEffect(() => {
 	// 	dispatch(fetchingAsync({timeout: 500}));

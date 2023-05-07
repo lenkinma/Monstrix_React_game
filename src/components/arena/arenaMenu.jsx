@@ -28,7 +28,9 @@ function ArenaMenu(props) {
 		}
 	}
 
-	const CardModal = makeModal(MonstrixCard, {green: true, red: false, close: true}, 'Monstrix Card', setCardIsOpen, chooseMonster);
+	const CardModal = makeModal(MonstrixCard,
+		{green: {status: true, text: 'Select'}, red: {status: false}, close: true},
+		'Monstrix Card', setCardIsOpen, chooseMonster);
 
 	const StartFightMenu = () => {
 		return (
@@ -53,7 +55,9 @@ function ArenaMenu(props) {
 		)
 	}
 
-	const ArenaMenuModal = makeModal(StartFightMenu, {green: false, red: false, close: true}, 'Start fight', setArenaModalIsOpen);
+	const ArenaMenuModal = makeModal(StartFightMenu,
+		{green: {status: false}, red: {status: false}, close: true},
+		'Start fight', setArenaModalIsOpen);
 
 	return (
 			<div className={styles.wrapper}>
