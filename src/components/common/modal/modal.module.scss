@@ -11,6 +11,7 @@
   display: flex;
   flex-direction: column;
   box-shadow: $box-shadow-green-100;
+  min-width: 400px;
 }
 .title_n_close{
   padding-bottom: 10px;

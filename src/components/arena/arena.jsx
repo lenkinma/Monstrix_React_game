@@ -8,11 +8,13 @@ import {GiBroadsword, GiHealthNormal} from "react-icons/gi";
 import {TbDog} from "react-icons/tb";
 import {BiRun} from "react-icons/bi";
 import {setCoins, setErrorNotification} from "../../store/profileSlice";
-import {SetNotification, setNotification} from "../common/notification/makeNotification";
+import {setNotification} from "../common/notification/makeNotification";
+import ArenaMenu from "./arenaMenu";
 
 function Arena(props) {
 	const dispatch = useDispatch();
 	const coins = useSelector(state => state.profile.coins);
+	const isFight = useSelector(state => state.arena.isFight);
 	const [healModalIsOpen, setHealModalIsOpen] = useState(false);
 	const [cardIsOpen, setCardIsOpen] = useState(false);
 	const [idOpenCard, setIdOpenCard] = useState(null);
@@ -104,6 +106,9 @@ function Arena(props) {
 				setNotification(dispatch, 'success', 'health replenished');
 			}
 		});
+
+
+	if (isFight === false) return <ArenaMenu/>
 
 	return (
 		<div>

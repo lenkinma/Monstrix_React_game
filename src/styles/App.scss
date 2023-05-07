@@ -12,6 +12,7 @@
 
 .main{
   grid-area: main;
+  height: 400px;
   background-color: $primary-color-600;
   @extend %block;
 }

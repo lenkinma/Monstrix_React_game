@@ -1,0 +1,43 @@
+@import 'src/styles/global';
+
+.wrapper{
+  height: 100%;
+}
+.title{
+  text-align: center;
+  font-weight: bold;
+  padding-bottom: 10px;
+  border-bottom: 2px solid $secondary-color-500;
+}
+.main_container{
+  display: flex;
+  flex-wrap: wrap;
+  height: 90%;
+  align-items: center;
+  justify-content: center;
+}
+.button{
+  @extend %button;
+}
+
+.monstrix_container{
+  display: flex;
+  margin: 10px 0;
+  overflow: auto;
+}
+.monstrix_card{
+  @extend %monstrix_card;
+  background-color: $primary-color-700;
+  &:hover{
+    background-color: $primary-color-800;
+  }
+}
+.selected_card{
+  background-color: $secondary-color-500;
+  &:hover{
+    background-color: $secondary-color-600;
+  }
+}
+.card_image{
+  @extend %monstrix_image;
+}

@@ -7,9 +7,13 @@ const arenaSlice = createSlice({
 	initialState: {
 		stage: 1,
 		enemy: allMonstrix.find(elem => elem.name === 'Reshiram'),
-		isFight: true,
+		isFight: false,
 	},
 	reducers: {
+		startFight(state, action){
+			// state.isFight = action.payload.name;
+			// state.isAuth = true;
+		},
 	},
 });
 
