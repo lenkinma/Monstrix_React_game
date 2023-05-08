@@ -11,12 +11,15 @@ import {levelUp} from "../../store/myMonstrixSlice";
 function ArenaMenu(props) {
 	const myMonstrix = useSelector(state => state.myMonstrix.myMonstrix);
 	const monstrixGotANewLvl = useSelector(state => state.myMonstrix.monstrixGotANewLvl);
+	const stage = useSelector(state => state.arena.stage);
+	const childrenStages = Array.from({ length: 7 }, (_, i) => i + 1);
 
 	const dispatch = useDispatch();
 	const [arenaModalIsOpen, setArenaModalIsOpen] = useState(false);
 	const [cardIsOpen, setCardIsOpen] = useState(false);
 	const [idOpenCard, setIdOpenCard] = useState(false);
 	const [idselectedCard, setidSelectedCard] = useState(0);
+	const [selectedStage, setSelectedStage] = useState(stage);
 
 
 	const chooseMonster = () => {
@@ -27,7 +30,7 @@ function ArenaMenu(props) {
 		if (idselectedCard === 0) setNotification(dispatch, 'error', 'Please, choose your monster');
 		else{
 			const myMonster = myMonstrix.find(elem => elem.id === idselectedCard);
-			dispatch(startFight({myMonster}))
+			dispatch(startFight({myMonster, selectedStage}))
 		}
 	}
 
@@ -56,8 +59,15 @@ function ArenaMenu(props) {
 						</div>
 					)}
 				</div>
-				<div>Generate an opponent:</div>
-				<button className={styles.button} onClick={() => generateAnOpponent()}>Generate</button>
+				<div>Select a stage:</div>
+				<div className={styles.stages_block}>
+					{childrenStages.map(elem =>
+						<div className={selectedStage === elem ? styles.selected_stage : stage < elem ? styles.disabled_stage : styles.stage}
+						     onClick={() => (stage >= elem && setSelectedStage(elem))}>{elem}</div>
+					)}
+				</div>
+					<div>Generate an opponent:</div>
+					<button className={styles.button} onClick={() => generateAnOpponent()}>Generate</button>
 			</div>
 		)
 	}
@@ -65,7 +75,6 @@ function ArenaMenu(props) {
 	const ArenaMenuModal = makeModal(StartFightMenu,
 		{green: {status: false}, red: {status: false}, close: true},
 		'Start fight', setArenaModalIsOpen);
-
 	return (
 			<div className={styles.wrapper}>
 				{monstrixGotANewLvl && <CardNewLevelModal id={monstrixGotANewLvl} isMyMonster={true} newLevel={true}/>}

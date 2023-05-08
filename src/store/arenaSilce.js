@@ -6,8 +6,9 @@ import {useSelector} from "react-redux";
 const arenaSlice = createSlice({
 	name: 'arena',
 	initialState: {
-		stage: 1,
-		stageLevel: 0, //max 3
+		stage: 3,
+		selectedStage: 3,
+		stageLevel: 0, //max 5
 		enemy: null,
 		myMonster: null,
 		isFight: false,
@@ -16,7 +17,8 @@ const arenaSlice = createSlice({
 	reducers: {
 		startFight(state, action){
 			state.myMonster = action.payload.myMonster;
-			const monstersStage = allMonstrix.filter(elem => (elem.lvl === state.stage && elem.id !== action.payload.myMonster.id));
+			state.selectedStage = action.payload.selectedStage;
+			const monstersStage = allMonstrix.filter(elem => (elem.lvl === action.payload.selectedStage && elem.id !== action.payload.myMonster.id));
 			state.enemy = monstersStage[Math.floor(Math.random() * (monstersStage.length))];
 			state.isFight = true;
 		},
@@ -34,10 +36,11 @@ const arenaSlice = createSlice({
 			state.fightLog = [];
 			state.enemy = null;
 			state.myMonster = null;
-			state.stageLevel += 1;
+			if (state.stage === state.selectedStage) state.stageLevel += 1;
 			if (state.stageLevel === 5) {
 				state.stage += 1;
 				state.stageLevel = 0;
+				state.selectedStage += 1;
 			}
 		},
 	},
