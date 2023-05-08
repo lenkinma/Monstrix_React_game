@@ -6,9 +6,12 @@ import MonstrixCard from "../monstrix/monstrixCard/monstrixCard";
 import cn from "classnames";
 import {setNotification} from "../common/notification/makeNotification";
 import {startFight} from "../../store/arenaSilce";
+import {levelUp} from "../../store/myMonstrixSlice";
 
 function ArenaMenu(props) {
 	const myMonstrix = useSelector(state => state.myMonstrix.myMonstrix);
+	const monstrixGotANewLvl = useSelector(state => state.myMonstrix.monstrixGotANewLvl);
+
 	const dispatch = useDispatch();
 	const [arenaModalIsOpen, setArenaModalIsOpen] = useState(false);
 	const [cardIsOpen, setCardIsOpen] = useState(false);
@@ -31,6 +34,10 @@ function ArenaMenu(props) {
 	const CardModal = makeModal(MonstrixCard,
 		{green: {status: true, text: 'Select'}, red: {status: false}, close: true},
 		'Monstrix Card', setCardIsOpen, chooseMonster);
+
+	const CardNewLevelModal = makeModal(MonstrixCard,
+		{green: {status: false,}, red: {status: false}, close: true},
+		'You got a new Level!!!', () => dispatch(levelUp({id: 0, xp: 0})));
 
 	const StartFightMenu = () => {
 		return (
@@ -61,7 +68,7 @@ function ArenaMenu(props) {
 
 	return (
 			<div className={styles.wrapper}>
-
+				{monstrixGotANewLvl && <CardNewLevelModal id={monstrixGotANewLvl} isMyMonster={true} newLevel={true}/>}
 				{arenaModalIsOpen && <ArenaMenuModal/>}
 
 				<div className={styles.title}>Arena</div>

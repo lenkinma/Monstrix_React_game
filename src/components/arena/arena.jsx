@@ -1,4 +1,4 @@
-import React, {memo, useEffect, useState} from 'react';
+import React, {memo, useState} from 'react';
 import styles from './arena.module.scss';
 import {useDispatch, useSelector} from "react-redux";
 import cn from "classnames";
@@ -10,6 +10,7 @@ import {BiRun} from "react-icons/bi";
 import {setCoins} from "../../store/profileSlice";
 import {setNotification} from "../common/notification/makeNotification";
 import {changeEnemy, changeFightLog, changeMyMonster, endFight} from "../../store/arenaSilce";
+import {levelUp} from "../../store/myMonstrixSlice";
 
 function Arena(props) {
 	const dispatch = useDispatch();
@@ -111,10 +112,10 @@ function Arena(props) {
 		return (
 			<div>
 				{fightResult === 'win' &&
-					'you got 100 coins!'
+					'you got 100 coins and 120xp!'
 				}
 				{fightResult === 'draw' &&
-					'you got 50 coins!'
+					'you got 50 coins and 60xp!'
 				}
 				{fightResult === 'lose' &&
 					'you got nothing :-('
@@ -129,9 +130,11 @@ function Arena(props) {
 			dispatch(endFight({}));
 			if (fightResult === 'win'){
 				dispatch(setCoins({coins: coins + 100}));
+				dispatch(levelUp({id: myMonster.id, xp: 120}));
 			}
 			if (fightResult === 'draw'){
 				dispatch(setCoins({coins: coins + 50}));
+				dispatch(levelUp({id: myMonster.id, xp: 60}));
 			}
 			if (fightResult === 'lose'){
 
@@ -143,7 +146,7 @@ function Arena(props) {
 	return (
 		<div>
 			{endFightModalIsOpen && <EndOfFightModal/> }
-			{cardIsOpen && <CardModal id={idOpenCard} /> }
+			{cardIsOpen && <CardModal id={idOpenCard} isMyMonster={idOpenCard === myMonster.id}/> }
 			{healModalIsOpen && <HealModal/> }
 
 			<div className={styles.title}>Arena</div>

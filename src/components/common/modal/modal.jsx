@@ -8,7 +8,6 @@ export const makeModal = (Component, mode = {
 	close: true,
 }, title = 'Default title', setModalIsOpen, onGreenButton, onRedButton = () => setModalIsOpen(false)) => {
 	const ModalBase = (props) => {
-		debugger;
 		const closeModal = () => {
 			if (mode.close === true) setModalIsOpen(false);
 		};

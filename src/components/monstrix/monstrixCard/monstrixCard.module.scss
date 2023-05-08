@@ -15,3 +15,13 @@
 .description{
   color: $secondary-color-200;
 }
+.lvl_container{
+  display: flex;
+}
+.xp{
+  margin-left: 10px;
+}
+.new_lvl{
+  color: $secondary-color-300;
+  font-weight: bolder;
+}
