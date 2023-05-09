@@ -135,7 +135,7 @@ function Arena(props) {
 					dispatch(setCoins({coins: coins - Math.ceil(enemy.cost/2)}));
 					let chance = randomIntFromInterval(1, 100);
 					if (chance > 35){
-						setNotification(dispatch, 'error', 'Вам не повезло! :-(');
+						setNotification(dispatch, 'error', 'You are out of luck :-(');
 						setTameModalIsOpen(false);
 					}
 					else{

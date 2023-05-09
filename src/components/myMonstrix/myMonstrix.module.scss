@@ -10,7 +10,9 @@
 }
 .monstrix_container{
   display: flex;
+  height: 369px;
   flex-wrap: wrap;
+  overflow-y: auto;
   margin: 10px 0;
 }
 .monstrix_card{
