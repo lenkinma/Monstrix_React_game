@@ -20,7 +20,7 @@ const profileSlice = createSlice({
 	initialState: {
 		isAuth: false,
 		name: null,
-		coins: 200,
+		coins: 5000,
 		isFetching: false,
 		errorNotification: {
 			status: false,

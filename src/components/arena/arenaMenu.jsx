@@ -45,7 +45,7 @@ function ArenaMenu(props) {
 	const StartFightMenu = () => {
 		return (
 			<div>
-				{cardIsOpen && <CardModal id={idOpenCard} /> }
+				{cardIsOpen && <CardModal id={idOpenCard} isMyMonster={true}/> }
 
 				<div>Choose your monster:</div>
 				<div className={styles.monstrix_container}>

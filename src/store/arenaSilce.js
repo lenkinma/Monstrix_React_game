@@ -36,11 +36,13 @@ const arenaSlice = createSlice({
 			state.fightLog = [];
 			state.enemy = null;
 			state.myMonster = null;
-			if (state.stage === state.selectedStage) state.stageLevel += 1;
-			if (state.stageLevel === 5) {
-				state.stage += 1;
-				state.stageLevel = 0;
-				state.selectedStage += 1;
+			if (!action.payload.leave){
+				if (state.stage === state.selectedStage) state.stageLevel += 1;
+				if (state.stageLevel === 5) {
+					state.stage += 1;
+					state.stageLevel = 0;
+					state.selectedStage += 1;
+				}
 			}
 		},
 	},

@@ -10,7 +10,7 @@ import {BiRun} from "react-icons/bi";
 import {setCoins} from "../../store/profileSlice";
 import {setNotification} from "../common/notification/makeNotification";
 import {changeEnemy, changeFightLog, changeMyMonster, endFight} from "../../store/arenaSilce";
-import {levelUp} from "../../store/myMonstrixSlice";
+import {addNewMonster, levelUp} from "../../store/myMonstrixSlice";
 
 function Arena(props) {
 	const dispatch = useDispatch();
@@ -18,11 +18,16 @@ function Arena(props) {
 	const myMonster = useSelector(state => state.arena.myMonster);
 	const enemy = useSelector(state => state.arena.enemy);
 	const fightLog = useSelector(state => state.arena.fightLog);
+	const myMonstrix = useSelector(state => state.myMonstrix.myMonstrix);
 
+	const [endFightModalIsOpen, setEndFightModalIsOpen] = useState(false);
+	const [tameModalIsOpen, setTameModalIsOpen] = useState(false);
+	const [leaveModalIsOpen, setLeaveModalIsOpen] = useState(false);
 	const [healModalIsOpen, setHealModalIsOpen] = useState(false);
 	const [cardIsOpen, setCardIsOpen] = useState(false);
-	const [endFightModalIsOpen, setEndFightModalIsOpen] = useState(false);
 	const [idOpenCard, setIdOpenCard] = useState(null);
+
+
 
 	const [attackButtonIsDisables, setAttackButtonIsDisables] = useState(false);
 	const [myMonsterIsAttack, setMyMonsterIsAttack] = useState(false);
@@ -43,11 +48,11 @@ function Arena(props) {
 	}
 
 	const tryToTame = () => {
-		console.log('try to tame');
+		setTameModalIsOpen(true);
 	}
 
 	const leave = () => {
-		console.log('leave');
+		setLeaveModalIsOpen(true);
 	}
 
 	const myMonsterAttacks = () => {
@@ -89,7 +94,6 @@ function Arena(props) {
 				<div>To add 50 health to your monster?</div>
 				<div>It will cost 120 coins.</div>
 			</div>
-
 		);
 	}
 	const HealModal = makeModal(HealMonster,
@@ -107,6 +111,58 @@ function Arena(props) {
 			}
 		});
 
+	const Tame = ({cost}) => {
+		return (
+			<div>
+				<div>Do you want to try to tame this enemy monster?</div>
+				<div>It will cost you {Math.ceil(cost/2)} coins</div>
+				<div>The chance of taming this monster is 35%</div>
+			</div>
+		);
+	}
+	const TameModal = makeModal(Tame,
+		{green: {status: true, text: 'yes'}, red: {status: true, text: 'No'}, close: true},
+		'Try to tame it?',
+		setTameModalIsOpen, () => {
+			if (myMonstrix.find(elem => elem.id === enemy.id)){
+				setNotification(dispatch, 'error', 'This monster is already in your collection!');
+			}
+			else{
+				if (coins < Math.ceil(enemy.cost/2)){
+					setNotification(dispatch, 'error', 'not enough coins');
+				}
+				else{
+					dispatch(setCoins({coins: coins - Math.ceil(enemy.cost/2)}));
+					let chance = randomIntFromInterval(1, 100);
+					if (chance > 35){
+						setNotification(dispatch, 'error', 'Вам не повезло! :-(');
+						setTameModalIsOpen(false);
+					}
+					else{
+						dispatch(endFight({}));
+						dispatch(addNewMonster({id: enemy.id}));
+						setTameModalIsOpen(false);
+						setNotification(dispatch, 'success', 'You has tamed this monster!');
+					}
+				}
+			}
+		});
+
+	const Leave = () => {
+		return (
+			<div>
+				<div>Do you really want to leave the fight?</div>
+				<div>It would mean that you are a loser!</div>
+			</div>
+		);
+	}
+	const LeaveModal = makeModal(Leave,
+		{green: {status: true, text: 'yes'}, red: {status: true, text: 'No'}, close: true},
+		'Leave the fight?',
+		setLeaveModalIsOpen, () => {
+			dispatch(endFight({leave: true}));
+			setNotification(dispatch, 'success', 'You\'re a loser! ha-ha-ha!');
+		});
 
 	const EndOfFight = () => {
 		return (
@@ -148,6 +204,8 @@ function Arena(props) {
 			{endFightModalIsOpen && <EndOfFightModal/> }
 			{cardIsOpen && <CardModal id={idOpenCard} isMyMonster={idOpenCard === myMonster.id}/> }
 			{healModalIsOpen && <HealModal/> }
+			{tameModalIsOpen && <TameModal cost={enemy.cost}/> }
+			{leaveModalIsOpen && <LeaveModal/> }
 
 			<div className={styles.title}>Arena</div>
 			<div className={styles.main_container}>

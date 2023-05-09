@@ -26,6 +26,7 @@ export const allMonstrix = [
 		protect: 20,
 		lvl: 1,
 		xp: 0,
+		cost: 500,
 	},
 	{
 		id: 2,
@@ -37,6 +38,7 @@ export const allMonstrix = [
 		protect: 20,
 		lvl: 1,
 		xp: 0,
+		cost: 500,
 	},
 	{
 		id: 3,
@@ -48,6 +50,7 @@ export const allMonstrix = [
 		protect: 20,
 		lvl: 1,
 		xp: 0,
+		cost: 500,
 	},
 	{
 		id: 1,
@@ -59,6 +62,7 @@ export const allMonstrix = [
 		protect: 20,
 		lvl: 1,
 		xp: 0,
+		cost: 500,
 	},
 	{
 		id: 4,
@@ -70,6 +74,7 @@ export const allMonstrix = [
 		protect: 20,
 		lvl: 1,
 		xp: 0,
+		cost: 500,
 	},
 	{
 		id: 5,
@@ -81,6 +86,7 @@ export const allMonstrix = [
 		protect: 20,
 		lvl: 1,
 		xp: 0,
+		cost: 500,
 	},
 	{
 		id: 7,
@@ -92,6 +98,7 @@ export const allMonstrix = [
 		protect: 20,
 		lvl: 1,
 		xp: 0,
+		cost: 500,
 	},
 	{
 		id: 8,
@@ -103,6 +110,7 @@ export const allMonstrix = [
 		protect: 20,
 		lvl: 1,
 		xp: 0,
+		cost: 500,
 	},
 	{
 		id: 9,
@@ -114,6 +122,7 @@ export const allMonstrix = [
 		protect: 20,
 		lvl: 1,
 		xp: 0,
+		cost: 500,
 	},
 	{
 		id: 10,
@@ -125,6 +134,7 @@ export const allMonstrix = [
 		protect: 20,
 		lvl: 2,
 		xp: 0,
+		cost: 500,
 	},
 	{
 		id: 11,
@@ -136,6 +146,7 @@ export const allMonstrix = [
 		protect: 20,
 		lvl: 2,
 		xp: 0,
+		cost: 500,
 	},
 	{
 		id: 12,
@@ -147,6 +158,7 @@ export const allMonstrix = [
 		protect: 20,
 		lvl: 2,
 		xp: 0,
+		cost: 500,
 	},
 	{
 		id: 13,
@@ -158,6 +170,7 @@ export const allMonstrix = [
 		protect: 20,
 		lvl: 2,
 		xp: 0,
+		cost: 500,
 	},
 	{
 		id: 14,
@@ -169,6 +182,7 @@ export const allMonstrix = [
 		protect: 20,
 		lvl: 3,
 		xp: 0,
+		cost: 500,
 	},
 	{
 		id: 15,
@@ -180,6 +194,7 @@ export const allMonstrix = [
 		protect: 20,
 		lvl: 3,
 		xp: 0,
+		cost: 500,
 	},
 	{
 		id: 16,
@@ -191,5 +206,6 @@ export const allMonstrix = [
 		protect: 20,
 		lvl: 3,
 		xp: 0,
+		cost: 500,
 	},
 ]

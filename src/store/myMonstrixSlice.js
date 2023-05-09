@@ -29,9 +29,13 @@ const myMonstrixSlice = createSlice({
 			}
 			else state.monstrixGotANewLvl = null;
 		},
+		addNewMonster(state, action){
+			let newMonster = allMonstrix.find(elem => elem.id === action.payload.id);
+			state.myMonstrix.push(newMonster);
+		}
 	},
 });
 
-export const {levelUp} = myMonstrixSlice.actions;
+export const {levelUp, addNewMonster} = myMonstrixSlice.actions;
 
 export default myMonstrixSlice.reducer;
