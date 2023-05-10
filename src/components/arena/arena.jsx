@@ -1,4 +1,4 @@
-import React, {memo, useState} from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import styles from './arena.module.scss';
 import {useDispatch, useSelector} from "react-redux";
 import cn from "classnames";
@@ -78,10 +78,33 @@ function Arena(props) {
 			dispatch(changeMyMonster({myMonster: {...myMonster, hp: (myMonster.hp - damage < 0 ? 0 : myMonster.hp - damage)}}));
 			dispatch(changeFightLog({fightLog: [...fightLog, tempLog, {id: fightLog.length + 2, name: enemy.name, event: `did ${damage} damage`}]}));
 
-			setFightResult('draw');
-			setEndFightModalIsOpen(true);
+			// setFightResult('draw');
+			// setEndFightModalIsOpen(true);
 		}, 1000);
 	}
+
+	useEffect(() => {
+		// console.log(`${myMonster.hp} - my hp`);
+		// console.log(`${enemy.hp} - enemy hp`);
+		if (myMonster.hp === 0 && enemy.hp === 0){
+			setFightResult('draw');
+			setEndFightModalIsOpen(true);
+		}
+		else{
+			if (myMonster.hp === 0){
+				setFightResult('lose');
+				setEndFightModalIsOpen(true);
+			}
+			else{
+				if (enemy.hp === 0){
+					setFightResult('win');
+					setEndFightModalIsOpen(true);
+				}
+			}
+		}
+
+	}, [myMonster.hp, enemy.hp]);
+
 
 
 	const CardModal = makeModal(MonstrixCard,

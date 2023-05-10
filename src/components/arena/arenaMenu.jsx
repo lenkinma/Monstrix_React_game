@@ -12,7 +12,7 @@ function ArenaMenu(props) {
 	const myMonstrix = useSelector(state => state.myMonstrix.myMonstrix);
 	const monstrixGotANewLvl = useSelector(state => state.myMonstrix.monstrixGotANewLvl);
 	const stage = useSelector(state => state.arena.stage);
-	const childrenStages = Array.from({ length: 7 }, (_, i) => i + 1);
+	const childrenStages = Array.from({ length: 5 }, (_, i) => i + 1);
 
 	const dispatch = useDispatch();
 	const [arenaModalIsOpen, setArenaModalIsOpen] = useState(false);
