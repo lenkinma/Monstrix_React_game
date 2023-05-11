@@ -7,6 +7,8 @@ import cn from "classnames";
 import {setNotification} from "../common/notification/makeNotification";
 import {startFight} from "../../store/arenaSilce";
 import {levelUp} from "../../store/myMonstrixSlice";
+import {BsPatchQuestion} from "react-icons/bs";
+import Tooltip from "../common/tooltip/tooltip";
 
 function ArenaMenu(props) {
 	const myMonstrix = useSelector(state => state.myMonstrix.myMonstrix);
@@ -59,7 +61,12 @@ function ArenaMenu(props) {
 						</div>
 					)}
 				</div>
-				<div>Select a stage:</div>
+				<span className={styles.stage_tooltip}>
+					<Tooltip content='The bigger the stage, the harder the opponents'>
+						<BsPatchQuestion/>
+					</Tooltip>
+					{`  Select a stage:`}
+				</span>
 				<div className={styles.stages_block}>
 					{childrenStages.map(elem =>
 						<div className={selectedStage === elem ? styles.selected_stage : stage < elem ? styles.disabled_stage : styles.stage}
