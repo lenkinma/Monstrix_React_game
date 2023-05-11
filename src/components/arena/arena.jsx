@@ -115,7 +115,7 @@ function Arena(props) {
 		return (
 			<div>
 				<div>To add 50 health to your monster?</div>
-				<div>It will cost 120 coins.</div>
+				<div>It will cost 100 coins.</div>
 			</div>
 		);
 	}
@@ -123,11 +123,11 @@ function Arena(props) {
 		{green: {status: true, text: 'Yes'}, red: {status: true, text: 'No'}, close: true},
 		'To heal your monster?',
 		setHealModalIsOpen, () => {
-			if (coins - 120 < 0) {
+			if (coins - 100 < 0) {
 				setNotification(dispatch, 'error', 'not enough coins');
 			}
 			else{
-				dispatch(setCoins({coins: coins - 120}));
+				dispatch(setCoins({coins: coins - 100}));
 				dispatch(changeMyMonster({myMonster: {...myMonster, hp: myMonster.hp + 50}}));
 				setHealModalIsOpen(false);
 				setNotification(dispatch, 'success', 'health replenished');
@@ -191,10 +191,10 @@ function Arena(props) {
 		return (
 			<div>
 				{fightResult === 'win' &&
-					'you got 100 coins and 120xp!'
+					`you got ${Math.ceil(enemy.cost / 5)} coins and ${enemy.lvl * 50} xp!`
 				}
 				{fightResult === 'draw' &&
-					'you got 50 coins and 60xp!'
+					`you got ${Math.ceil(enemy.cost / 10)} coins and ${enemy.lvl * 25} xp!`
 				}
 				{fightResult === 'lose' &&
 					'you got nothing :-('
@@ -208,12 +208,12 @@ function Arena(props) {
 		setEndFightModalIsOpen, () => {
 			dispatch(endFight({}));
 			if (fightResult === 'win'){
-				dispatch(setCoins({coins: coins + 100}));
-				dispatch(levelUp({id: myMonster.id, xp: 120}));
+				dispatch(setCoins({coins: coins + Math.ceil(enemy.cost / 5)}));
+				dispatch(levelUp({id: myMonster.id, xp: enemy.lvl * 50}));
 			}
 			if (fightResult === 'draw'){
-				dispatch(setCoins({coins: coins + 50}));
-				dispatch(levelUp({id: myMonster.id, xp: 60}));
+				dispatch(setCoins({coins: coins + Math.ceil(enemy.cost / 10)}));
+				dispatch(levelUp({id: myMonster.id, xp: enemy.lvl * 25}));
 			}
 			if (fightResult === 'lose'){
 

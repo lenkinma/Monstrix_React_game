@@ -6,8 +6,8 @@ import {useSelector} from "react-redux";
 const arenaSlice = createSlice({
 	name: 'arena',
 	initialState: {
-		stage: 3,
-		selectedStage: 3,
+		stage: 1, //max 5
+		selectedStage: 1,
 		stageLevel: 0, //max 5
 		enemy: null,
 		myMonster: null,
@@ -37,7 +37,7 @@ const arenaSlice = createSlice({
 			state.enemy = null;
 			state.myMonster = null;
 			if (!action.payload.leave){
-				if (state.stage === state.selectedStage) state.stageLevel += 1;
+				if (state.stage === state.selectedStage && state.selectedStage <= 5) state.stageLevel += 1;
 				if (state.stageLevel === 5) {
 					state.stage += 1;
 					state.stageLevel = 0;
