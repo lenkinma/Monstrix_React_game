@@ -30,6 +30,7 @@ function App() {
 					<Route path='/arena' element={<ArenaBlock/>}/>
 					<Route path='/my_monstrix' element={<MyMonstrix/>}/>
 					<Route path='/shop' element={<Shop/>}/>
+					<Route path='/about' element={<MainPage/>}/>
 				</Routes>
 			</div>
 

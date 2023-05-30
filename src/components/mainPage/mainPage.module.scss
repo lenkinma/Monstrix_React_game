@@ -1,2 +1,33 @@
 @import 'src/styles/global';
 
+.title{
+  text-align: center;
+  font-weight: bold;
+  padding-bottom: 10px;
+  border-bottom: 2px solid $secondary-color-500;
+  margin-bottom: 20px;
+}
+.content_wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 87%;
+}
+.about_game{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.social_network{
+  margin-top: 5px;
+  display: flex;
+  gap: 15px;
+}
+.contacts_block a svg{
+  width: 50px;
+  height: 50px;
+  color: $secondary-color-400;
+  &:hover{
+    color: $secondary-color-500;
+  }
+}

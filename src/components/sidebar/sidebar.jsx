@@ -12,6 +12,7 @@ function Sidebar(props) {
 			<NavLink to={'/arena'}>Arena</NavLink>
 			<NavLink to={'/my_monstrix'}>My Monstrix</NavLink>
 			<NavLink to={'/shop'}>Shop</NavLink>
+			<NavLink to={'/about'}>About</NavLink>
 		</div>
 	);
 }
