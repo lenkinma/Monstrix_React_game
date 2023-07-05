@@ -1,17 +1,19 @@
 {
   "files": {
-    "main.css": "/Monstrix_React_game/static/css/main.3846b644.css",
-    "main.js": "/Monstrix_React_game/static/js/main.f427f253.js",
+    "main.css": "/Monstrix_React_game/static/css/main.63c804bf.css",
+    "main.js": "/Monstrix_React_game/static/js/main.7a35c8f3.js",
     "static/js/787.a90c006d.chunk.js": "/Monstrix_React_game/static/js/787.a90c006d.chunk.js",
+    "static/media/language_en_icon.jpg": "/Monstrix_React_game/static/media/language_en_icon.e2675c085a4c23763ffd.jpg",
     "static/media/background.jpg": "/Monstrix_React_game/static/media/background.8b00005de127e4f4b981.jpg",
+    "static/media/language_ru_icon.jpg": "/Monstrix_React_game/static/media/language_ru_icon.cc56340cbc3f951b9de7.jpg",
     "static/media/preloader.svg": "/Monstrix_React_game/static/media/preloader.bb457ced5cac0881eeee5cde9147c680.svg",
     "index.html": "/Monstrix_React_game/index.html",
-    "main.3846b644.css.map": "/Monstrix_React_game/static/css/main.3846b644.css.map",
-    "main.f427f253.js.map": "/Monstrix_React_game/static/js/main.f427f253.js.map",
+    "main.63c804bf.css.map": "/Monstrix_React_game/static/css/main.63c804bf.css.map",
+    "main.7a35c8f3.js.map": "/Monstrix_React_game/static/js/main.7a35c8f3.js.map",
     "787.a90c006d.chunk.js.map": "/Monstrix_React_game/static/js/787.a90c006d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3846b644.css",
-    "static/js/main.f427f253.js"
+    "static/css/main.63c804bf.css",
+    "static/js/main.7a35c8f3.js"
   ]
 }
