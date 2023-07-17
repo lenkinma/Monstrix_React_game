@@ -8,6 +8,7 @@
   @extend %block;
   display: flex;
   flex-direction: column;
+  gap: 10px;
   a{
     text-decoration: none;
     color: $secondary-color-100;

@@ -1,6 +1,7 @@
 import styles from './makeNotification.module.scss';
 import cn from 'classnames';
 import {setErrorNotification, setSuccessNotification} from "../../../store/profileSlice";
+import {useSelector} from "react-redux";
 
 
 export const setNotification = (dispatch, type, text) => {
@@ -15,16 +16,17 @@ export const setNotification = (dispatch, type, text) => {
 }
 
 const Notification = ({variant, text}) => {
+	const lg = useSelector(state => state.profile.language);
 	return (
 		<div>
 			{variant === 'error' &&
 				<div className={cn(styles.error, styles.notification_wrapper)}>
-					Error: {text}
+					{lg === 'ru' ? 'Ошибка:' : 'Error:'} {text}
 				</div>
 			}
 			{variant === 'success' &&
 				<div className={cn(styles.success, styles.notification_wrapper)}>
-					Successfully: {text}
+					{lg === 'ru' ? 'Успешно:' : 'Successfully:'} {text}
 				</div>
 			}
 		</div>

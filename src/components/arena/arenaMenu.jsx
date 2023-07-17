@@ -11,6 +11,7 @@ import {BsPatchQuestion} from "react-icons/bs";
 import Tooltip from "../common/tooltip/tooltip";
 
 function ArenaMenu(props) {
+	const lg = useSelector(state => state.profile.language);
 	const myMonstrix = useSelector(state => state.myMonstrix.myMonstrix);
 	const monstrixGotANewLvl = useSelector(state => state.myMonstrix.monstrixGotANewLvl);
 	const stage = useSelector(state => state.arena.stage);
@@ -29,7 +30,7 @@ function ArenaMenu(props) {
 		setCardIsOpen(false);
 	}
 	const generateAnOpponent = () => {
-		if (idselectedCard === 0) setNotification(dispatch, 'error', 'Please, choose your monster');
+		if (idselectedCard === 0) setNotification(dispatch, 'error', (lg === 'ru' ? 'Пожалуйста, выберите своего монстра' : 'Please, choose your monster'));
 		else{
 			const myMonster = myMonstrix.find(elem => elem.id === idselectedCard);
 			dispatch(startFight({myMonster, selectedStage}))
@@ -37,19 +38,19 @@ function ArenaMenu(props) {
 	}
 
 	const CardModal = makeModal(MonstrixCard,
-		{green: {status: true, text: 'Select'}, red: {status: false}, close: true},
-		'Monstrix Card', setCardIsOpen, chooseMonster);
+		{green: {status: true, text: (lg === 'ru' ? 'Выбрать' : 'Select')}, red: {status: false}, close: true},
+		(lg === 'ru' ? 'Карта монстра' : 'Monstrix Card'), setCardIsOpen, chooseMonster);
 
 	const CardNewLevelModal = makeModal(MonstrixCard,
 		{green: {status: false,}, red: {status: false}, close: true},
-		'You got a new Level!!!', () => dispatch(levelUp({id: 0, xp: 0})));
+		(lg === 'ru' ? 'Вы получили новый уровень!!!' : 'You got a new Level!!!'), () => dispatch(levelUp({id: 0, xp: 0})));
 
 	const StartFightMenu = () => {
 		return (
 			<div>
 				{cardIsOpen && <CardModal id={idOpenCard} isMyMonster={true}/> }
 
-				<div>Choose your monster:</div>
+				<div>{lg === 'ru' ? 'Выберите своего монстра:' : 'Choose your monster:'}</div>
 				<div className={styles.monstrix_container}>
 					{myMonstrix.map(item =>
 						<div
@@ -62,10 +63,10 @@ function ArenaMenu(props) {
 					)}
 				</div>
 				<span className={styles.stage_tooltip}>
-					<Tooltip content='The bigger the stage, the harder the opponents'>
+					<Tooltip content={lg === 'ru' ? 'Чем больше стадия, тем больше соперник' : 'The bigger the stage, the harder the opponents'}>
 						<BsPatchQuestion/>
 					</Tooltip>
-					{`  Select a stage:`}
+					{lg === 'ru' ? `  Выберите стадию:` : `  Select a stage:`}
 				</span>
 				<div className={styles.stages_block}>
 					{childrenStages.map(elem =>
@@ -73,23 +74,23 @@ function ArenaMenu(props) {
 						     onClick={() => (stage >= elem && setSelectedStage(elem))}>{elem}</div>
 					)}
 				</div>
-					<div>Generate an opponent:</div>
-					<button className={styles.button} onClick={() => generateAnOpponent()}>Generate</button>
+					<div>{lg === 'ru' ? 'Сгенерировать соперника:' : 'Generate an opponent:'}</div>
+					<button className={styles.button} onClick={() => generateAnOpponent()}>{lg === 'ru' ? 'Сгенерировать' : 'Generate'}</button>
 			</div>
 		)
 	}
 
 	const ArenaMenuModal = makeModal(StartFightMenu,
 		{green: {status: false}, red: {status: false}, close: true},
-		'Start fight', setArenaModalIsOpen);
+		(lg === 'ru' ? 'Начать битву' : 'Start fight'), setArenaModalIsOpen);
 	return (
 			<div className={styles.wrapper}>
 				{monstrixGotANewLvl && <CardNewLevelModal id={monstrixGotANewLvl} isMyMonster={true} newLevel={true}/>}
 				{arenaModalIsOpen && <ArenaMenuModal/>}
 
-				<div className={styles.title}>Arena</div>
+				<div className={styles.title}>{lg === 'ru' ? 'Арена' : 'Arena'}</div>
 				<div className={styles.main_container}>
-					<button className={styles.button} onClick={() => setArenaModalIsOpen(true)}>Start fight</button>
+					<button className={styles.button} onClick={() => setArenaModalIsOpen(true)}>{lg === 'ru' ? 'Начать битву' : 'Start fight'}</button>
 				</div>
 			</div>
 	);

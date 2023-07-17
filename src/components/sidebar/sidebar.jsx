@@ -1,18 +1,17 @@
 import React from 'react';
 import styles from './sidebar.module.scss';
 import {NavLink} from "react-router-dom";
-import {fetchingAsync} from "../../store/profileSlice";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 function Sidebar(props) {
-	const dispatch = useDispatch();
+	const lg = useSelector(state => state.profile.language);
 
 	return (
 		<div className={styles.sidebar}>
-			<NavLink to={'/arena'}>Arena</NavLink>
-			<NavLink to={'/my_monstrix'}>My Monstrix</NavLink>
-			<NavLink to={'/shop'}>Shop</NavLink>
-			<NavLink to={'/about'}>About</NavLink>
+			<NavLink to={'/arena'}>{lg === 'ru' ? 'Арена' : 'Arena'}</NavLink>
+			<NavLink to={'/my_monstrix'}>{lg === 'ru' ? 'Мои Монстры' : 'My Monstrix'}</NavLink>
+			<NavLink to={'/shop'}>{lg === 'ru' ? 'Магазин' : 'Shop'}</NavLink>
+			<NavLink to={'/about'}>{lg === 'ru' ? 'Об игре' : 'About'}</NavLink>
 		</div>
 	);
 }

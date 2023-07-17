@@ -21,6 +21,7 @@ const profileSlice = createSlice({
 		isAuth: false,
 		name: null,
 		coins: 100,
+		language: 'ru',
 		isFetching: false,
 		errorNotification: {
 			status: false,
@@ -38,6 +39,9 @@ const profileSlice = createSlice({
 		},
 		setCoins(state, action){
 			state.coins = action.payload.coins;
+		},
+		setLanguage(state, action){
+			state.language = action.payload.language;
 		},
 		setErrorNotification(state, action){
 			state.errorNotification.status = action.payload.status;
@@ -58,6 +62,6 @@ const profileSlice = createSlice({
 	}
 });
 
-export const {createGame, setCoins, setErrorNotification, setSuccessNotification} = profileSlice.actions;
+export const {createGame, setCoins, setErrorNotification, setSuccessNotification, setLanguage} = profileSlice.actions;
 
 export default profileSlice.reducer;

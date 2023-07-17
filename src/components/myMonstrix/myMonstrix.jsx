@@ -6,19 +6,20 @@ import MonstrixCard from "../monstrix/monstrixCard/monstrixCard";
 
 
 function MyMonstrix(props) {
+	const lg = useSelector(state => state.profile.language);
 	const myMonstrix = useSelector(state => state.myMonstrix.myMonstrix);
 	const [cardIsOpen, setCardIsOpen] = useState(false);
 	const [idOpenCard, setIdOpenCard] = useState(null);
 
 	const CardModal = makeModal(MonstrixCard,
 		{green: {status: false,}, red: {status: false,}, close: true},
-		'Monstrix Card', setCardIsOpen);
+		(lg === 'ru' ? 'Карта монстра' : 'Monstrix Card'), setCardIsOpen);
 
 	return (
 		<div>
 			{cardIsOpen && <CardModal id={idOpenCard} isMyMonster={true}/> }
 
-			<div className={styles.title}>My monstrix</div>
+			<div className={styles.title}>{lg === 'ru' ? 'Мои монстры' : 'My monstrix'}</div>
 			<div className={styles.monstrix_container}>
 				{myMonstrix.map(item =>
 					<div

@@ -19,6 +19,7 @@ function Arena(props) {
 	const enemy = useSelector(state => state.arena.enemy);
 	const fightLog = useSelector(state => state.arena.fightLog);
 	const myMonstrix = useSelector(state => state.myMonstrix.myMonstrix);
+	const lg = useSelector(state => state.profile.language);
 
 	const [endFightModalIsOpen, setEndFightModalIsOpen] = useState(false);
 	const [tameModalIsOpen, setTameModalIsOpen] = useState(false);
@@ -63,7 +64,7 @@ function Arena(props) {
 			setMyMonsterIsAttack(false);
 			let damage = damageWithRandom(myMonster.damage);
 			dispatch(changeEnemy({enemy: {...enemy, hp: (enemy.hp - damage < 0 ? 0 : enemy.hp - damage)}}))
-			tempLog = {id: fightLog.length + 1, name: myMonster.name, event: `did ${damage} damage`};
+			tempLog = {id: fightLog.length + 1, name: myMonster.name, event: (lg === 'ru' ? `нанёс ${damage} урона` : `did ${damage} damage`)};
 			dispatch(changeFightLog({fightLog: [...fightLog, tempLog]}));
 			setEnemyIsAttack(true);
 			enemyMonsterAttacks(tempLog);
@@ -76,7 +77,7 @@ function Arena(props) {
 			setEnemyIsAttack(false);
 			let damage = damageWithRandom(enemy.damage);
 			dispatch(changeMyMonster({myMonster: {...myMonster, hp: (myMonster.hp - damage < 0 ? 0 : myMonster.hp - damage)}}));
-			dispatch(changeFightLog({fightLog: [...fightLog, tempLog, {id: fightLog.length + 2, name: enemy.name, event: `did ${damage} damage`}]}));
+			dispatch(changeFightLog({fightLog: [...fightLog, tempLog, {id: fightLog.length + 2, name: enemy.name, event: (lg === 'ru' ? `нанёс ${damage} урона` : `did ${damage} damage`)}]}));
 
 			// setFightResult('draw');
 			// setEndFightModalIsOpen(true);
@@ -86,86 +87,108 @@ function Arena(props) {
 	useEffect(() => {
 		// console.log(`${myMonster.hp} - my hp`);
 		// console.log(`${enemy.hp} - enemy hp`);
-		if (myMonster.hp === 0 && enemy.hp === 0){
-			setFightResult('draw');
-			setEndFightModalIsOpen(true);
-		}
-		else{
-			if (myMonster.hp === 0){
-				setFightResult('lose');
+		if (!attackButtonIsDisables){
+			if (myMonster.hp === 0 && enemy.hp === 0){
+				setFightResult('draw');
 				setEndFightModalIsOpen(true);
 			}
 			else{
-				if (enemy.hp === 0){
-					setFightResult('win');
+				if (myMonster.hp === 0){
+					setFightResult('lose');
 					setEndFightModalIsOpen(true);
+				}
+				else{
+					if (enemy.hp === 0){
+						setFightResult('win');
+						setEndFightModalIsOpen(true);
+					}
 				}
 			}
 		}
-
-	}, [myMonster.hp, enemy.hp]);
+	}, [attackButtonIsDisables]);
 
 
 
 	const CardModal = makeModal(MonstrixCard,
 		{green: {status: false}, red: {status: false}, close: true},
-		'Monstrix Card', setCardIsOpen);
+		(lg === 'ru' ? 'Карта монстра' : 'Monstrix card'), setCardIsOpen);
 
 	const HealMonster = () => {
 		return (
 			<div>
-				<div>To add 50 health to your monster?</div>
-				<div>It will cost 100 coins.</div>
+				{lg === 'ru'
+					?
+					<div>
+						Добавить 50 здоровья вашему монстру?
+						<br/>Это будет стоить 100 монет.
+					</div>
+					:
+					<div>
+						To add 50 health to your monster?
+						<br/>It will cost 100 coins.
+					</div>
+				}
 			</div>
 		);
 	}
 	const HealModal = makeModal(HealMonster,
-		{green: {status: true, text: 'Yes'}, red: {status: true, text: 'No'}, close: true},
-		'To heal your monster?',
+		{green: {status: true, text: (lg === 'ru' ? 'Да' : 'Yes')}, red: {status: true, text: (lg === 'ru' ? 'Нет' : 'No')}, close: true},
+		(lg === 'ru' ? 'Вылечить вашего монстра?' : 'To heal your monster?'),
 		setHealModalIsOpen, () => {
 			if (coins - 100 < 0) {
-				setNotification(dispatch, 'error', 'not enough coins');
+				setNotification(dispatch, 'error', (lg === 'ru' ? 'не хватает монет' : 'not enough coins'));
 			}
 			else{
 				dispatch(setCoins({coins: coins - 100}));
 				dispatch(changeMyMonster({myMonster: {...myMonster, hp: myMonster.hp + 50}}));
 				setHealModalIsOpen(false);
-				setNotification(dispatch, 'success', 'health replenished');
+				setNotification(dispatch, 'success', (lg === 'ru' ? 'здоровье восполнено' : 'health replenished'));
 			}
 		});
 
 	const Tame = ({cost}) => {
 		return (
 			<div>
-				<div>Do you want to try to tame this enemy monster?</div>
-				<div>It will cost you {Math.ceil(cost/2)} coins</div>
-				<div>The chance of taming this monster is 35%</div>
+				{lg === 'ru'
+					?
+					<div>
+						Вы хотите попробовать приручить вражеского монстра?
+						<br/>Это будет стоить {Math.ceil(cost/2)} монет
+						<br/>Шанс приручения этого монстра 35%
+					</div>
+					:
+					<div>
+						Do you want to try to tame this enemy monster?
+						<br/>It will cost you {Math.ceil(cost/2)} coins
+						<br/>The chance of taming this monster is 35%
+					</div>
+				}
 			</div>
 		);
 	}
 	const TameModal = makeModal(Tame,
-		{green: {status: true, text: 'yes'}, red: {status: true, text: 'No'}, close: true},
-		'Try to tame it?',
+		{green: {status: true, text: (lg === 'ru' ? 'Да' : 'Yes')}, red: {status: true, text: (lg === 'ru' ? 'Нет' : 'No')}, close: true},
+		(lg === 'ru' ? 'Попытаться приручить?' : 'Try to tame it?'),
 		setTameModalIsOpen, () => {
 			if (myMonstrix.find(elem => elem.id === enemy.id)){
-				setNotification(dispatch, 'error', 'This monster is already in your collection!');
+				setNotification(dispatch, 'error', (lg === 'ru' ? 'этот монстер уже есть в вашей коллекции!' : 'this monster is already in your collection!'));
 			}
 			else{
 				if (coins < Math.ceil(enemy.cost/2)){
-					setNotification(dispatch, 'error', 'not enough coins');
+					setNotification(dispatch, 'error', (lg === 'ru' ? 'не хватает монет' : 'not enough coins'));
 				}
 				else{
 					dispatch(setCoins({coins: coins - Math.ceil(enemy.cost/2)}));
 					let chance = randomIntFromInterval(1, 100);
 					if (chance > 35){
-						setNotification(dispatch, 'error', 'You are out of luck :-(');
+						setNotification(dispatch, 'error', (lg === 'ru' ? 'удача вам не улыбнулась :-(' : 'you are out of luck :-('));
 						setTameModalIsOpen(false);
 					}
 					else{
 						dispatch(endFight({}));
 						dispatch(addNewMonster({id: enemy.id}));
 						setTameModalIsOpen(false);
-						setNotification(dispatch, 'success', 'You has tamed this monster!');
+						setNotification(dispatch, 'success', (lg === 'ru' ? 'Вы приручили этого монстра!' : 'you has tamed this monster!'));
 					}
 				}
 			}
@@ -174,49 +197,60 @@ function Arena(props) {
 	const Leave = () => {
 		return (
 			<div>
-				<div>Do you really want to leave the fight?</div>
-				<div>It would mean that you are a loser!</div>
+				{lg === 'ru'
+					?
+					<div>
+						Вы действительно хотите покинуть битву?
+						<br/>Это будет означать, что вы лузер!
+					</div>
+					:
+					<div>
+						Do you really want to leave the fight?
+						<br/>It would mean that you are a loser!
+					</div>
+				}
 			</div>
 		);
 	}
 	const LeaveModal = makeModal(Leave,
-		{green: {status: true, text: 'yes'}, red: {status: true, text: 'No'}, close: true},
-		'Leave the fight?',
+		{green: {status: true, text: (lg === 'ru' ? 'Да' : 'Yes')}, red: {status: true, text: (lg === 'ru' ? 'Нет' : 'No')}, close: true},
+		(lg === 'ru' ? 'Покинуть битву?' : 'Leave the fight?'),
 		setLeaveModalIsOpen, () => {
 			dispatch(endFight({leave: true}));
-			setNotification(dispatch, 'success', 'You\'re a loser! ha-ha-ha!');
+			setNotification(dispatch, 'success', (lg === 'ru' ? 'вы лузер! ха-ха-ха!' : 'you\'re a loser! ha-ha-ha!'));
 		});
 
 	const EndOfFight = () => {
 		return (
 			<div>
 				{fightResult === 'win' &&
-					`you got ${Math.ceil(enemy.cost / 5)} coins and ${enemy.lvl * 50} xp!`
+					(lg === 'ru' ? `Вы получили ${Math.ceil(enemy.cost / 5)} монет и ${enemy.lvl * 50} опыта!` : `You got ${Math.ceil(enemy.cost / 5)} coins and ${enemy.lvl * 50} xp!`)
 				}
 				{fightResult === 'draw' &&
-					`you got ${Math.ceil(enemy.cost / 10)} coins and ${enemy.lvl * 25} xp!`
+					(lg === 'ru' ? `Вы получили ${Math.ceil(enemy.cost / 10)} монет и ${enemy.lvl * 25} опыта!` : `You got ${Math.ceil(enemy.cost / 10)} coins and ${enemy.lvl * 25} xp!`)
 				}
 				{fightResult === 'lose' &&
-					'you got nothing :-('
+					(lg === 'ru' ? 'Вы ничего не получили :-(' : 'You got nothing :-(')
 				}
 			</div>
 		);
 	}
 	const EndOfFightModal = makeModal(EndOfFight,
-		{green: {status: true, text: 'Okay'}, red: {status: false}, close: false},
-		(fightResult === 'draw' ? 'DRAW' : fightResult === 'win' ? 'YOU WIN' : fightResult === 'lose' && 'YOU LOSE'),
+		{green: {status: true, text: (lg === 'ru' ? 'ОК' : 'OK')}, red: {status: false}, close: false},
+		(fightResult === 'draw' ? (lg === 'ru' ? 'НИЧЬЯ' : 'DRAW') : fightResult === 'win' ? (lg === 'ru' ? 'ПОБЕДА' : 'YOU WIN') : fightResult === 'lose' && (lg === 'ru' ? 'ПОРАЖЕНИЕ' : 'YOU LOSE')),
 		setEndFightModalIsOpen, () => {
-			dispatch(endFight({}));
 			if (fightResult === 'win'){
+				dispatch(endFight({}));
 				dispatch(setCoins({coins: coins + Math.ceil(enemy.cost / 5)}));
 				dispatch(levelUp({id: myMonster.id, xp: enemy.lvl * 50}));
 			}
 			if (fightResult === 'draw'){
+				dispatch(endFight({}));
 				dispatch(setCoins({coins: coins + Math.ceil(enemy.cost / 10)}));
 				dispatch(levelUp({id: myMonster.id, xp: enemy.lvl * 25}));
 			}
 			if (fightResult === 'lose'){
-
+				dispatch(endFight({lose: true}));
 			}
 
 			setEndFightModalIsOpen(false);
@@ -230,7 +264,7 @@ function Arena(props) {
 			{tameModalIsOpen && <TameModal cost={enemy.cost}/> }
 			{leaveModalIsOpen && <LeaveModal/> }
 
-			<div className={styles.title}>Arena</div>
+			<div className={styles.title}>{lg === 'ru' ? 'Арена' : 'Arena'}</div>
 			<div className={styles.main_container}>
 				<div className={styles.fight_block}>
 					<div className={styles.cards_block}>
@@ -261,30 +295,30 @@ function Arena(props) {
 							className={!attackButtonIsDisables ? styles.button_attack : styles.disabled_button}
 							onClick={myMonsterAttacks}
 							disabled={attackButtonIsDisables}
-						><GiBroadsword/>Attack</button>
+						><GiBroadsword/>{lg === 'ru' ? 'Атака' : 'Attack'}</button>
 						<div className={styles.stuff_buttons_block}>
 							<button
 								className={!attackButtonIsDisables ? styles.button_heal : styles.disabled_button}
 								onClick={healMyMonster}
 								disabled={attackButtonIsDisables}
-							><GiHealthNormal/>Heal</button>
+							><GiHealthNormal/>{lg === 'ru' ? 'Лечить' : 'Heal'}</button>
 							<button
 								className={!attackButtonIsDisables ? styles.button_tame : styles.disabled_button}
 								onClick={tryToTame}
 								disabled={attackButtonIsDisables}
-							><TbDog/>Try to tame</button>
+							><TbDog/>{lg === 'ru' ? 'Приручить' : 'Try to tame'}</button>
 							<button
 								className={!attackButtonIsDisables ? styles.button_leave : styles.disabled_button}
 								onClick={leave}
 								disabled={attackButtonIsDisables}
-							><BiRun/>Leave</button>
+							><BiRun/>{lg === 'ru' ? 'Сдаться' : 'Leave'}</button>
 						</div>
 					</div>
 				</div>
 
 
 				<div className={styles.fight_log_block}>
-					<div className={styles.log_title}>Fight log</div>
+					<div className={styles.log_title}>{lg === 'ru' ? 'Лог битвы' : 'Fight log'}</div>
 					<div className={styles.log}>
 						{fightLog.map(elem =>
 							<div className={styles.log_elem} key={elem.id}>{elem.id}) {elem.name}: {elem.event}</div>)}
